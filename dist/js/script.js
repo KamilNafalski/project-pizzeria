@@ -97,8 +97,6 @@
       thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
     }
 
-    
-
     initAccordion(){
       const thisProduct = this;
       /* find the clickable trigger (the element that should react to clicking) */
@@ -173,7 +171,8 @@
               // add option price to price variable
               price += option.price;
             }
-          } else {
+          } 
+          else {
             // check if the option is default
             if(option.default) {
               // reduce price variable
@@ -191,12 +190,11 @@
             }
           }
         }
-        /* multiply price by amount */
-        price *= thisProduct.amountWidget.value;
-        console.log(price);
-        // update calculated price in the HTML
-        thisProduct.priceElem.innerHTML = price;
-      } 
+      }
+      /* multiply price by amount */
+      price *= thisProduct.amountWidget.value;
+      // update calculated price in the HTML
+      thisProduct.priceElem.innerHTML = price;
     }
 
     initAmountWidget(){
@@ -215,7 +213,7 @@
       console.log('AmountWidget:', thisWidget);
       console.log('constructor arguments:', element);
       thisWidget.getElements(element);
-      thisWidget.setValue(thisWidget.input.value);
+      thisWidget.setValue(settings.amountWidget.defaultValue);
       thisWidget.initActions();
     }
     getElements(element){
@@ -239,10 +237,10 @@
           }
         }
       }
+      thisWidget.announce();
       //thisWidget.value = newValue;
       thisWidget.input.value = thisWidget.value;
-      
-      thisWidget.announce();
+           
     }
     
     initActions(){
